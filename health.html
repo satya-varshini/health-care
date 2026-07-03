@@ -1,363 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Healthcare Advisor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthAdvisor Pro - Your Personal Health Care Advisor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
+    :root {
+      --primary-color: #00796b;
+      --secondary-color: #00897b;
+      --accent-color: #26a69a;
+      --light-bg: #e0f2f1;
+      --dark-text: #1a1a1a;
+      --light-text: #ffffff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
 
-body{
-    background:#f6fbfd;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-text);
+      background-color: #f5f5f5;
+    }
 
-/* Header */
+    /* HEADER & NAVIGATION */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
 
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 80px;
-    background:white;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.logo{
-    display:flex;
-    align-items:center;
-}
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.logo-circle{
-    width:50px;
-    height:50px;
-    background:#29b6d8;
-    border-radius:50%;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:25px;
-    margin-right:12px;
-}
+    .logo i {
+      color: #ffeb3b;
+    }
 
-.logo h2{
-    color:#222;
-}
+    nav {
+      display: none;
+    }
 
-.logo p{
-    color:gray;
-    font-size:13px;
-}
+    nav.active {
+      display: flex;
+    }
 
-nav ul{
-    display:flex;
-    list-style:none;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
 
-nav ul li{
-    margin:0 18px;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
 
-nav ul li a{
-    text-decoration:none;
-    color:#555;
-    font-weight:600;
-}
+    nav a:hover {
+      opacity: 0.8;
+    }
 
-nav ul li a:hover{
-    color:#00a8cc;
-}
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-.btn{
-    background:linear-gradient(to right,#1d9cc2,#48d7e6);
-    color:white;
-    padding:13px 28px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:bold;
-}
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--secondary-color);
+        flex-direction: column;
+        padding: 20px;
+      }
 
-/* Hero */
+      nav.active {
+        display: flex;
+      }
 
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:70px 80px;
-}
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
 
-.left{
-    width:50%;
-}
+      .menu-toggle {
+        display: block;
+      }
+    }
 
-.tag{
-    display:inline-block;
-    background:#dff8ff;
-    color:#0099b9;
-    padding:10px 18px;
-    border-radius:30px;
-    margin-bottom:25px;
-    font-weight:bold;
-}
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-.left h1{
-    font-size:68px;
-    line-height:1.1;
-    color:#111;
-}
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
 
-.left h1 span{
-    color:#29b6d8;
-}
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
 
-.left p{
-    margin-top:25px;
-    font-size:24px;
-    color:#666;
-    line-height:1.7;
-}
+    .cta-btn {
+      background: #ffeb3b;
+      color: var(--primary-color);
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+    }
 
-.buttons{
-    margin-top:40px;
-}
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
 
-.buttons button{
-    padding:18px 35px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-    cursor:pointer;
-    margin-right:20px;
-}
+    /* MAIN CONTENT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-.primary{
-    background:linear-gradient(to right,#1e9fc7,#42d4df);
-    color:white;
-}
+    section {
+      padding: 60px 20px;
+    }
 
-.secondary{
-    background:white;
-    border:1px solid lightgray;
-}
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      color: var(--primary-color);
+    }
 
-.features{
-    margin-top:40px;
-    display:flex;
-    gap:35px;
-    color:#555;
-    font-size:20px;
-}
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-.right{
-    width:45%;
-    display:flex;
-    justify-content:center;
-}
+    .service-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: 0.3s;
+    }
 
-.image-box{
-    width:620px;
-    background:white;
-    border-radius:25px;
-    padding:20px;
-    box-shadow:0 0 30px rgba(0,170,255,.18);
-}
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
 
-.image-box img{
-    width:100%;
-    border-radius:20px;
-}
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
 
-.counter{
-    width:230px;
-    background:white;
-    border-radius:20px;
-    padding:18px;
-    position:relative;
-    left:30px;
-    top:-60px;
-    box-shadow:0 8px 18px rgba(0,0,0,.12);
-}
+    .service-card h3 {
+      margin-bottom: 12px;
+      color: var(--primary-color);
+    }
 
-.counter h2{
-    color:#1a9bc1;
-}
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
 
-.counter h3{
-    margin-top:8px;
-    font-size:30px;
-}
+    /* DOCTORS */
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
 
-/* Responsive */
+    .doctor-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
 
-@media(max-width:1000px){
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
 
-header{
-padding:20px;
-flex-direction:column;
-}
+    .doctor-photo {
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      height: 200px;
+    }
 
-nav{
-margin:20px 0;
-}
+    .doctor-info {
+      padding: 20px;
+    }
 
-.hero{
-flex-direction:column;
-padding:40px 20px;
-}
+    .doctor-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
 
-.left,.right{
-width:100%;
-}
+    .doctor-specialty {
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
 
-.left h1{
-font-size:45px;
-}
+    .doctor-info p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
 
-.left p{
-font-size:18px;
-}
+    .book-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      width: 100%;
+    }
 
-.image-box{
-width:100%;
-margin-top:40px;
-}
+    .book-btn:hover {
+      background: var(--secondary-color);
+    }
 
-.features{
-flex-direction:column;
-}
+    /* HEALTH TIPS */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
 
-}
-</style>
+    .tip-card {
+      background: white;
+      padding: 25px;
+      border-left: 4px solid var(--accent-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
 
+    .tip-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .tip-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* APPOINTMENT FORM */
+    .form-section {
+      background: var(--light-bg);
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .submit-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: var(--secondary-color);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .close-modal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: black;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      z-index: 3000;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
 </head>
 <body>
+  <!-- HEADER/NAVIGATION -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-heartbeat"></i>
+        HealthAdvisor Pro
+      </div>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="navMenu">
+        <ul>
+          <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+          <li><a href="#services" onclick="scrollToSection('services')">Services</a></li>
+          <li><a href="#doctors" onclick="scrollToSection('doctors')">Doctors</a></li>
+          <li><a href="#tips" onclick="scrollToSection('tips')">Health Tips</a></li>
+          <li><a href="#appointment" onclick="scrollToSection('appointment')">Book Appointment</a></li>
+          <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<header>
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <h1>Welcome to HealthAdvisor Pro</h1>
+    <p>Your trusted online health care advisor for medical guidance and wellness tips</p>
+    <button class="cta-btn" onclick="scrollToSection('appointment')">Book Appointment Now</button>
+  </section>
 
-<div class="logo">
+  <!-- SERVICES SECTION -->
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏥</div>
+          <h3>Online Consultation</h3>
+          <p>Connect with expert doctors from the comfort of your home via video call</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💊</div>
+          <h3>Prescription Management</h3>
+          <p>Get prescriptions sent directly to your registered pharmacy</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Health Records</h3>
+          <p>Maintain your complete medical history and lab reports in one place</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🩺</div>
+          <h3>Diagnostic Tests</h3>
+          <p>Book lab tests and health screenings with home sample collection</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🍎</div>
+          <h3>Wellness Programs</h3>
+          <p>Personalized diet and fitness plans from certified nutritionists</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">👶</div>
+          <h3>Family Health</h3>
+          <p>Health solutions for the entire family from infants to elderly</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="logo-circle">⚕</div>
+  <!-- DOCTORS SECTION -->
+  <section id="doctors">
+    <div class="container">
+      <h2>Meet Our Doctors</h2>
+      <div class="doctors-grid">
+        <div class="doctor-card">
+          <div class="doctor-photo">👨‍⚕️</div>
+          <div class="doctor-info">
+            <h3>Dr. Rajesh Kumar</h3>
+            <div class="doctor-specialty">General Medicine</div>
+            <p>15+ years of experience in general medicine and patient care</p>
+            <button class="book-btn" onclick="bookAppointment('Dr. Rajesh Kumar')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-photo">👨‍⚕️</div>
+          <div class="doctor-info">
+            <h3>Dr. Priya Sharma</h3>
+            <div class="doctor-specialty">Cardiology</div>
+            <p>Specialist in heart diseases with expertise in preventive care</p>
+            <button class="book-btn" onclick="bookAppointment('Dr. Priya Sharma')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-photo">👩‍⚕️</div>
+          <div class="doctor-info">
+            <h3>Dr. Anjali Singh</h3>
+            <div class="doctor-specialty">Pediatrics</div>
+            <p>Expert in child health and developmental pediatrics</p>
+            <button class="book-btn" onclick="bookAppointment('Dr. Anjali Singh')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-photo">👨‍⚕️</div>
+          <div class="doctor-info">
+            <h3>Dr. Vikram Patel</h3>
+            <div class="doctor-specialty">Neurology</div>
+            <p>Specialist in neurological disorders and nervous system health</p>
+            <button class="book-btn" onclick="bookAppointment('Dr. Vikram Patel')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div>
-<h2>E-Healthcare</h2>
-<p>ADVISOR</p>
-</div>
+  <!-- HEALTH TIPS SECTION -->
+  <section id="tips" style="background-color: var(--light-bg);">
+    <div class="container">
+      <h2>Health Tips & Advice</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h3>💧 Stay Hydrated</h3>
+          <p>Drink at least 8 glasses of water daily to maintain proper hydration. Water helps regulate body temperature, transport nutrients, and remove waste.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🏃 Regular Exercise</h3>
+          <p>Aim for at least 30 minutes of moderate exercise daily. This improves cardiovascular health, boosts mood, and helps maintain healthy weight.</p>
+        </div>
+        <div class="tip-card">
+          <h3>😴 Quality Sleep</h3>
+          <p>Get 7-8 hours of quality sleep every night. Good sleep improves immunity, mental health, and helps prevent chronic diseases.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🥗 Balanced Diet</h3>
+          <p>Eat a balanced diet rich in fruits, vegetables, and whole grains. Limit sugar and processed foods to maintain optimal health.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🧘 Stress Management</h3>
+          <p>Practice meditation, yoga, or mindfulness to reduce stress. Chronic stress can lead to serious health issues.</p>
+        </div>
+        <div class="tip-card">
+          <h3>🦷 Oral Hygiene</h3>
+          <p>Brush twice daily and floss regularly. Good oral hygiene prevents infections and maintains overall health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <!-- APPOINTMENT BOOKING SECTION -->
+  <section id="appointment">
+    <div class="container">
+      <h2>Book Your Appointment</h2>
+      <div class="form-section">
+        <form id="appointmentForm" onsubmit="submitAppointment(event)">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="doctor">Select Doctor</label>
+            <select id="doctor" name="doctor" required>
+              <option value="">-- Choose a Doctor --</option>
+              <option value="Dr. Rajesh Kumar">Dr. Rajesh Kumar - General Medicine</option>
+              <option value="Dr. Priya Sharma">Dr. Priya Sharma - Cardiology</option>
+              <option value="Dr. Anjali Singh">Dr. Anjali Singh - Pediatrics</option>
+              <option value="Dr. Vikram Patel">Dr. Vikram Patel - Neurology</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="symptoms">Symptoms / Reason for Visit</label>
+            <textarea id="symptoms" name="symptoms" rows="4" placeholder="Describe your symptoms or reason for consultation..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Book Appointment</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-<nav>
+  <!-- CONTACT SECTION -->
+  <section id="contact" style="background-color: var(--light-bg);">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <p><strong>📞 Phone:</strong> +91 1800-2000-3456</p>
+        <p><strong>📧 Email:</strong> support@healthadvisorpro.com</p>
+        <p><strong>🏢 Address:</strong> 123 Health Plaza, Medical Complex, City, Country - 12345</p>
+        <p><strong>⏰ Hours:</strong> Mon-Sun, 9:00 AM - 8:00 PM</p>
+      </div>
+    </div>
+  </section>
 
-<ul>
+  <!-- MODAL FOR BOOKING -->
+  <div id="appointmentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Confirm Your Appointment</h2>
+      <p id="modalContent"></p>
+      <button class="submit-btn" onclick="confirmBooking()">Confirm</button>
+    </div>
+  </div>
 
-<li><a href="#">Home</a></li>
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 HealthAdvisor Pro. All rights reserved. Your health is our priority.</p>
+  </footer>
 
-<li><a href="#">Symptom Checker</a></li>
+  <script>
+    // Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
 
-<li><a href="#">Disease Library</a></li>
+    // Close menu when link is clicked
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
 
-<li><a href="#">Find Clinic</a></li>
+    // Smooth scroll to section
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
-<li><a href="#">Patient Records</a></li>
+    // Appointment booking from doctor card
+    function bookAppointment(doctorName) {
+      const selectElement = document.getElementById('doctor');
+      selectElement.value = doctorName;
+      scrollToSection('appointment');
+    }
 
-<li><a href="#">About</a></li>
+    // Submit appointment form
+    let formData = {};
+    function submitAppointment(event) {
+      event.preventDefault();
+      formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        doctor: document.getElementById('doctor').value,
+        date: document.getElementById('date').value,
+        symptoms: document.getElementById('symptoms').value
+      };
+      showModal(formData);
+    }
 
-</ul>
+    // Show confirmation modal
+    function showModal(data) {
+      const modal = document.getElementById('appointmentModal');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = `
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Doctor:</strong> ${data.doctor}</p>
+        <p><strong>Date:</strong> ${data.date}</p>
+        <p><strong>Symptoms:</strong> ${data.symptoms || 'Not specified'}</p>
+      `;
+      modal.classList.add('show');
+    }
 
-</nav>
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById('appointmentModal');
+      modal.classList.remove('show');
+    }
 
-<button class="btn" onclick="diagnosis()">Start Diagnosis</button>
+    // Confirm booking
+    function confirmBooking() {
+      showNotification('✓ Appointment confirmed! Check your email for details.');
+      document.getElementById('appointmentForm').reset();
+      closeModal();
+    }
 
-</header>
+    // Show notification
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
 
-<section class="hero">
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('appointmentModal');
+      if (event.target == modal) {
+        modal.classList.remove('show');
+      }
+    }
 
-<div class="left">
-
-<div class="tag">✦ Smart Healthcare Information System</div>
-
-<h1>Your personal<br>
-<span>healthcare advisor</span> —
-<br>anytime, anywhere.</h1>
-
-<p>
-Identify common conditions through a guided symptom check,
-discover the right over-the-counter medicines, and find approved
-clinics nearby — all from one trusted place.
-</p>
-
-<div class="buttons">
-
-<button class="primary" onclick="symptom()">Start Symptom Check →</button>
-
-<button class="secondary" onclick="clinic()">Find a Clinic</button>
-
-</div>
-
-<div class="features">
-
-<div>🛡 Confidential</div>
-
-<div>✔ Evidence-based</div>
-
-<div>📖 Always Free</div>
-
-</div>
-
-</div>
-
-<div class="right">
-
-<div>
-
-<div class="image-box">
-
-<img src="doctor.png" alt="Doctor">
-
-</div>
-
-<div class="counter">
-
-<h2>❤ Diagnoses today</h2>
-
-<h3>12,840+</h3>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<script>
-
-function diagnosis(){
-
-alert("Welcome to E-Healthcare Advisor!");
-
-}
-
-function symptom(){
-
-alert("Opening Symptom Checker...");
-
-}
-
-function clinic(){
-
-alert("Searching Nearby Clinics...");
-
-}
-
-</script>
-
+    // Set minimum date to today
+    document.addEventListener('DOMContentLoaded', function() {
+      const dateInput = document.getElementById('date');
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
+    });
+  </script>
 </body>
 </html>
